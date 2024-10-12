@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Cache Rust dependencies
+        uses: actions/cache@v2
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+          retention-days: 30
+
       - name: Set environment variables
         id: set-variables
         run: |
@@ -56,6 +65,8 @@ jobs:
         with:
           context: src/product-service
           file: src/product-service/Dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,retention-days=30
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
