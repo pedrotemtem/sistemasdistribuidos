@@ -27,7 +27,6 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-          retention-days: 30
 
       - name: Set environment variables
         id: set-variables
