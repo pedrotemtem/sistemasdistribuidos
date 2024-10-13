@@ -33,7 +33,7 @@ spec:
             command:
             - mongo
             - --eval
-            - db.runCommand('ping').ok
+            - db.adminCommand('ping')
           initialDelaySeconds: 5
           periodSeconds: 5
 ---
