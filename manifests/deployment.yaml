@@ -31,7 +31,7 @@ spec:
         livenessProbe:
           exec:
             command:
-            - mongo
+            - mongosh
             - --eval
             - db.runCommand('ping').ok
           initialDelaySeconds: 5
