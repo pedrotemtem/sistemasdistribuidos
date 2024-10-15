@@ -36,6 +36,7 @@ spec:
             - db.runCommand('ping').ok
           initialDelaySeconds: 5
           periodSeconds: 5
+          timeoutSeconds: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -306,7 +307,7 @@ spec:
       containers:
       - name: product-service
         #image: ghcr.io/azure-samples/aks-store-demo/product-service:latest
-        image: docker.io/sdgrupo01/product-service:latest 
+        image: docker.io/sdgrupo01/product-service:faa79e8 
         ports:
         - containerPort: 3002
         env: 
