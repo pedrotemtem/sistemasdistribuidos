@@ -36,7 +36,6 @@ spec:
             - db.runCommand('ping').ok
           initialDelaySeconds: 5
           periodSeconds: 5
-          timeoutSeconds: 3000
 ---
 apiVersion: v1
 kind: Service
