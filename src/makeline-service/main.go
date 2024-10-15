@@ -20,6 +20,10 @@ func main() {
 
 	// Get the database API type
 	apiType := os.Getenv("ORDER_DB_API")
+
+	log.Printf(apiType)
+	log.Printf(os.Getenv("APP_VERSION"))
+
 	switch apiType {
 	case "cosmosdbsql":
 		log.Printf("Using Azure CosmosDB SQL API")
