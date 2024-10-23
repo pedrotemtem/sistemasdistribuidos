@@ -3,6 +3,6 @@ kustomize:
   - docker.io/sdgrupo01/product-service:latest
   - docker.io/sdgrupo01/store-front:latest
   - docker.io/sdgrupo01/order-service:latest
-  - docker.io/sdgrupo01/makeline-service:latest
+  - docker.io/sdgrupo01/makeline-service:9329ced
   - docker.io/sdgrupo01/store-admin:latest
   - docker.io/sdgrupo01/virtual-worker:latest
