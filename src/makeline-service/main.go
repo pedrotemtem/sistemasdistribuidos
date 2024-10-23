@@ -18,6 +18,7 @@ const (
 func main() {
 	var orderService *OrderService
 
+    log.Printf("Starting presentation message")
 	// Get the database API type
 	apiType := os.Getenv("ORDER_DB_API")
 
