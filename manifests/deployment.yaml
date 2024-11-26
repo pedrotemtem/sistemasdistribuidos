@@ -368,7 +368,7 @@ spec:
       - name: product-service-grpc
         image: docker.io/sdgrupo01/product-service-grpc:latest 
         ports:
-        - containerPort: 3002
+        - containerPort: 8080
         # env: 
         # - name: AI_SERVICE_URL
         #   value: "http://ai-service:5001/"
@@ -382,14 +382,14 @@ spec:
         readinessProbe:
           httpGet:
             path: /health
-            port: 3002
+            port: 8080
           failureThreshold: 3
-          initialDelaySeconds: 30
+          initialDelaySeconds: 10
           periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /health
-            port: 3002
+            port: 8080
           failureThreshold: 5
           initialDelaySeconds: 3
           periodSeconds: 3
@@ -402,8 +402,8 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 3002
-    targetPort: 3002
+    port: 8080
+    targetPort: 8080
   selector:
     app: product-service-grpc
 ---
