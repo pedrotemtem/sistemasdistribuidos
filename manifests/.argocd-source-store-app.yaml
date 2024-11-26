@@ -6,3 +6,4 @@ kustomize:
   - docker.io/sdgrupo01/makeline-service:latest
   - docker.io/sdgrupo01/store-admin:latest
   - docker.io/sdgrupo01/virtual-worker:latest
+  - docker.io/sdgrupo01/product-service-grpc:2994585
