@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class GrpcClient {
     public static void main(String[] args) {
         // Initialize channel
+        System.out.println("Client excuted");
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
                 .usePlaintext()
                 .build();
