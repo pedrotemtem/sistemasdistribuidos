@@ -1,4 +1,4 @@
-name: package-product-service
+name: package-product-service-grpc
 
 on:
   push:
