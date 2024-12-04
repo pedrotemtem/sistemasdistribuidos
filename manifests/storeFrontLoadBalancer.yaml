@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: store-front-a-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ingress.class: "nginx"  # Ensure the NGINX Ingress is used
+spec:
+  rules:
+  - host: my-app.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          # old version
+          service:
+            name: my-app-v1          
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          # new version
+          service:
+            name: my-app-v2          
+            port:
+              number: 80
+  nginx.ingress.kubernetes.io/canary: "true"  # Mark this Ingress as a Canary
+  nginx.ingress.kubernetes.io/canary-weight: "20"  # 20% traffic to v2, 80% to v1
