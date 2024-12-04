@@ -10,7 +10,7 @@ resources:
   - makeline-service.yaml
   - product-service.yaml
   - store-front.yaml
-  - product-service-grpc
+  - product-service-grpc.yaml
   - store-front-grpc.yaml
   - store-admin.yaml
   - virtual-costumer.yaml
