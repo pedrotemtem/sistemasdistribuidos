@@ -56,3 +56,39 @@ spec:
     targetPort: 8080
   selector:
     app: product-service-grpc
+--- # auto scaling
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: product-service-grpc-hpa
+  labels:
+    app: product-service-grpc
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: product-service-grpc
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+--- # LoadBalancing
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: product-service-grpc-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web 
+  routes:
+  - match: Host(`product-service-grpc.storeapp.svc.cluster.local`)
+    kind: Rule
+    services:
+    - name: product-service-grpc
+      port: 8080
