@@ -26,7 +26,7 @@ spec:
             - name: GRPC_SERVER1_HOST
               value: "grpc-server1-service" #MUDAR
             - name: GRPC_SERVER2_HOST
-              value: "product-grpc"
+              value: "product-service-grpc"
         ports:
         - containerPort: 8000
         resources:
