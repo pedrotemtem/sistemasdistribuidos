@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: product-service-grpc
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: product-service-grpc
@@ -68,7 +68,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: product-service-grpc
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 10
   metrics:
   - type: Resource
