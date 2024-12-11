@@ -15,5 +15,6 @@ resources:
   - store-admin.yaml
   - virtual-costumer.yaml
   - virtual-worker.yaml
+  - service-monitor.yaml
 
 namespace: store-app
