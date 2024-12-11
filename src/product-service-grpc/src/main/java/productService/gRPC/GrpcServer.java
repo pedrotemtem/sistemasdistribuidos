@@ -15,6 +15,7 @@ public class GrpcServer {
         HTTPServer httpServer = new HTTPServer(9100);
         System.out.println("Server started, listening on 8080");
         server.start();
+        httpServer.start();
         server.awaitTermination();
     }
 }
