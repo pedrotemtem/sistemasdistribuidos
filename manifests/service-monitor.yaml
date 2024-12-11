@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1 
 kind: ServiceMonitor
-  metadata: 
-    name: service-monitor-service 
-    labels: 
-      app: service-monitor-service 
+metadata: 
+  name: service-monitor-service 
+  labels: 
+    app: service-monitor-service
 spec: 
   selector: 
     matchLabels: 
