@@ -2,10 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: product-service-grpc
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics" 
-    prometheus.io/port: "9100" 
 spec:
   replicas: 1
   selector:
@@ -15,6 +11,10 @@ spec:
     metadata:
       labels:
         app: product-service-grpc
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics" 
+        prometheus.io/port: "9100" 
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
@@ -65,7 +65,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - name: http
+    - name: grpc
       port: 8080         
       targetPort: 8080    
     - name: metrics
