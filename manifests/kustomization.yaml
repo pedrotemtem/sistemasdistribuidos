@@ -4,8 +4,16 @@ kind: Kustomization
 metadata:
   name: store-app
 resources:
-  - deployment.yaml  
+  - mongodb.yaml
+  - rabbitmq.yaml
+  - order-service.yaml
+  - makeline-service.yaml
+  - product-service.yaml
+  - store-front.yaml
+  - product-service-grpc.yaml
+  - store-front-grpc.yaml
+  - store-admin.yaml
+  - virtual-costumer.yaml
+  - virtual-worker.yaml
 
-namePrefix: store-
-nameSuffix: -v1
 namespace: store-app

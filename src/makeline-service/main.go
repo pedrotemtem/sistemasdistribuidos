@@ -18,8 +18,12 @@ const (
 func main() {
 	var orderService *OrderService
 
+    log.Printf("Starting presentation message")
 	// Get the database API type
 	apiType := os.Getenv("ORDER_DB_API")
+
+	log.Printf(os.Getenv("App version:" + "APP_VERSION"))
+
 	switch apiType {
 	case "cosmosdbsql":
 		log.Printf("Using Azure CosmosDB SQL API")

@@ -1,8 +1,9 @@
 kustomize:
   images:
-  - docker.io/sdgrupo01/product-service:latest
+  - docker.io/sdgrupo01/product-service:b9d2f64
   - docker.io/sdgrupo01/store-front:latest
   - docker.io/sdgrupo01/order-service:latest
   - docker.io/sdgrupo01/makeline-service:93fa40e
   - docker.io/sdgrupo01/store-admin:latest
   - docker.io/sdgrupo01/virtual-worker:latest
+  - docker.io/sdgrupo01/product-service-grpc:latest

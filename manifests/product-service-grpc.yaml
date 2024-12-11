@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-service-grpc
+  template:
+    metadata:
+      labels:
+        app: product-service-grpc
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: product-service-grpc
+        image: docker.io/sdgrupo01/product-service-grpc:latest 
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JDBC_URL
+          value: "jdbc:mysql://sistemasdistribuidos-peter-04b9.l.aivencloud.com:28708/defaultdb"
+        - name: JDBC_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-user
+              key: JDBC_USER
+        - name: JDBC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret-password
+              key: JDBC_PASSWORD
+        resources:
+          requests:
+            cpu: 500m
+            memory: 50Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8080
+        #   failureThreshold: 3
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 5
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8080
+        #   failureThreshold: 5
+        #   initialDelaySeconds: 3
+        #   periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service-grpc
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: product-service-grpc
+--- # auto scaling
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: product-service-grpc-hpa
+  labels:
+    app: product-service-grpc
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: product-service-grpc
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+--- # LoadBalancing
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: product-service-grpc-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web 
+  routes:
+  - match: Host(`product-service-grpc.storeapp.svc.cluster.local`)
+    kind: Rule
+    services:
+    - name: product-service-grpc
+      port: 8080

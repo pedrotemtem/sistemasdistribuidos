@@ -3,7 +3,6 @@ name: package-virtual-customer
 on:
   push:
     branches:
-      - 'main'
       - 'develop'
     paths:
       - 'src/virtual-customer/**'
