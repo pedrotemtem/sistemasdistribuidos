@@ -3,7 +3,6 @@ name: package-order-service
 on:
   push:
     branches:
-      - 'main'
       - 'develop'
     paths:
       - 'src/order-service/**'

@@ -3,7 +3,6 @@ name: package-virtual-worker
 on:
   push:
     branches:
-      - 'main'
       - 'develop'
     paths:
       - 'src/virtual-worker/**'

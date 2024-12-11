@@ -3,7 +3,6 @@ name: package-store-front
 on:
   push:
     branches:
-      - 'main'
       - 'develop'
     paths:
       - 'src/store-front/**'

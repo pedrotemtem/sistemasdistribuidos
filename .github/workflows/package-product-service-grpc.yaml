@@ -3,7 +3,6 @@ name: package-product-service-grpc
 on:
   push:
     branches:
-      - 'main'
       - 'develop'
     paths:
       - 'src/product-service-grpc/**'
