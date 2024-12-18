@@ -11,6 +11,10 @@ spec:
     metadata:
       labels:
         app: product-service-grpc
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics" 
+        prometheus.io/port: "9100" 
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
@@ -61,9 +65,12 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - name: http
-    port: 8080
-    targetPort: 8080
+    - name: grpc
+      port: 8080         
+      targetPort: 8080    
+    - name: metrics
+      port: 9100          
+      targetPort: 9100
   selector:
     app: product-service-grpc
 --- # auto scaling
