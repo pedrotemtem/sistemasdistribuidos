@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: product-service-grpc
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: product-service-grpc
@@ -85,7 +85,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: product-service-grpc
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 10
   metrics:
   - type: Resource
@@ -93,7 +93,7 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 70
+        averageUtilization: 30
 --- # LoadBalancing
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
